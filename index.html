@@ -3,23 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Challenge 4:Web APIs</title>
 </head>
 <body>
-    <header>
-        <a href="high-score-page">View high scores</a>
-        <h5 class="timer">Time:</h5>
-    </header>
+    <nav>
+        <a href="high-score-page" class="high-score-text">View high scores</a>
+        <h5 id="timer"></h5>
+    </nav>
 
-    <section>
+    <section id="questions" class="main-body">
         <h1>Coding Quiz Challenge</h1>
-        <p>Try to answer the following code-related questions within the time limit.
+        <p>Try to answer the following code-related questions within the time limit<br>
             Keep in mind that incorrect answers will penalize your score/time by ten seconds.
         </p>
     </section>
     <section>
-        <button>Start Quiz</button>
+        <button id="start-btn">Start Quiz</button>
     </section>
+
+
+    <script src="./assets/script.js"></script>
 </body>
 </html>
