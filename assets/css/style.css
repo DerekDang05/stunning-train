@@ -30,3 +30,23 @@ h1 {
     position: absolute;
     text-decoration: none;
 }
+
+
+.btns {
+    font-size: 1.15rem;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap; 
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.btns:hover {
+    cursor: pointer;
+}
