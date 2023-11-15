@@ -142,32 +142,12 @@ function finished2() {
     
         //event listener for submit button for initials
             submitButton.addEventListener("click", function() {
-            var initials = input.value
-
-            localStorage.setItem("intialsValue", initials)
-            storedScore = localStorage.getItem("intialsValue")  
-            console.log(storedScore)
-            createList.textContent = storedScore
-            console.log(createList)
-            ulLocation.appendChild(createList)
-            window.location.replace("highscore.html")
-        
+                var initials = input.value
+                localStorage.setItem("initialsValue", initials)
+                console.log("Initials: " + initials)
+                window.location.replace("highscore.html")
     })
     hasRun = true;
-    } else if (hasRun = true) {
-        hasRun = true
     }
     }
-
-
-
-
-
-}
-var clearBtn = document.getElementById("clearBtn")
-
-function clearScores() {
-    clearBtn.addEventListener("click", function() {
-        localStorage.clear();
-    })
 }
