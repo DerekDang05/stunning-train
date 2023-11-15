@@ -86,24 +86,19 @@ function loadQuestions(questionNumber) {
 function answerCheck() {
     var banner = document.createElement("footer");
     var buttonText = event.target.textContent;
-    console.log(questions[questionNumber].answer);
     if (buttonText === questions[questionNumber].answer) {
         banner.textContent = "Correct!";
         bannerLocation.appendChild(banner);
         score = score + 1;
-        console.log("correct");
-        console.log(score);
-        questionNumber++
+        questionNumber = questionNumber + 1
     } else {
         banner.textContent = "Wrong!"
         bannerLocation.appendChild(banner);
         duration = duration - penalty;
-        console.log("wrong");
-        console.log(score);
-        questionNumber++
+        questionNumber = questionNumber + 1
     }
 
-    if (questionNumber >=questions.length) {
+    if (questionNumber === 5) {
         finished(); //function that occurs when quiz is over
         duration = ""
     } else {
@@ -111,16 +106,60 @@ function answerCheck() {
     }
 }
 
-var scoresBtn = document.getElementById("scores-btn")
 //function that clears questions when quiz is done
-function finished() {
-    displayQuestions.innerHTML = "";
-    countdownText.innerHTML = "";
-    choiceLocation.innerHTML= "";
-    bannerLocation.innerHTML = "";
 
-    var h1 = document.createElement("h1")
-    h1.textContent = "You scored a  " + score + "/5"
-    displayQuestions.appendChild(h1)
+let hasRun = false;
+function finished2() {
+    return function() {
+        if (hasRun != true) {
+            displayQuestions.innerHTML = "";
+            countdownText.innerHTML = "";
+            choiceLocation.innerHTML= "";
+            bannerLocation.innerHTML = "";
+            var h1 = document.createElement("h1")
+            h1.textContent = "You scored a  " + score + "/5"
+            displayQuestions.appendChild(h1)
+        //creates input field and button to grab initials
+            var label = document.createElement("label")
+            label.textContent = "Enter initials"
+        
+            var scoresBtn = document.getElementById("scores-btn")
+    
+            var input = document.createElement("input")
+            input.setAttribute("type", "text")
+            scoresBtn.appendChild(input)
+    
+            var submitButton = document.createElement("button")
+            submitButton.setAttribute("type", "button");
+            submitButton.setAttribute("id", "Submit");
+            submitButton.textContent = "Submit";
+    
+            displayQuestions.appendChild(label)
+        // displayQuestions.appendChild(input)
+            displayQuestions.appendChild(submitButton)
+    
+    
+        //event listener for submit button for initials
+    
+            submitButton.addEventListener("click", function() {
+            var initials = input.value
+            console.log(initials)
+            localStorage.setItem("intialsValue", initials)
+            storedScore = localStorage.getItem("intialsValue")  
+            console.log(storedScore)
+
+        
+    })
+    hasRun = true;
+    } else if (hasRun = true) {
+        hasRun = true
+    }
+    }
+
+
+
+
 
 }
+const finished = finished2()
+
