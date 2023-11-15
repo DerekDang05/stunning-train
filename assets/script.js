@@ -33,6 +33,7 @@ var countdownText = document.querySelector("#timer");
 var displayQuestions = document.getElementById("questions")
 var createList = document.createElement("li");
 const bannerLocation = document.getElementById("footer-location");
+const ulLocation = document.querySelector("#scoreList")
 // Sets variables for functions
 let score = 0;
 let duration = 75;
@@ -107,7 +108,7 @@ function answerCheck() {
 }
 
 //function that clears questions when quiz is done
-
+const finished = finished2()
 let hasRun = false;
 function finished2() {
     return function() {
@@ -140,14 +141,16 @@ function finished2() {
     
     
         //event listener for submit button for initials
-    
             submitButton.addEventListener("click", function() {
             var initials = input.value
-            console.log(initials)
+
             localStorage.setItem("intialsValue", initials)
             storedScore = localStorage.getItem("intialsValue")  
             console.log(storedScore)
-
+            createList.textContent = storedScore
+            console.log(createList)
+            ulLocation.appendChild(createList)
+            window.location.replace("highscore.html")
         
     })
     hasRun = true;
@@ -161,5 +164,10 @@ function finished2() {
 
 
 }
-const finished = finished2()
+var clearBtn = document.getElementById("clearBtn")
 
+function clearScores() {
+    clearBtn.addEventListener("click", function() {
+        localStorage.clear();
+    })
+}
