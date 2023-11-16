@@ -141,13 +141,20 @@ function finished2() {
     
     
         //event listener for submit button for initials
-            submitButton.addEventListener("click", function() {
-                var initials = input.value
-                localStorage.setItem("initialsValue", initials)
-                console.log("Initials: " + initials)
-                window.location.replace("highscore.html")
-    })
-    hasRun = true;
-    }
+        submitButton.addEventListener("click", function () {
+            var highScores = 
+                JSON.parse(localStorage.getItem("initialsValue")) || [];
+            var initials = input.value;
+            var newScore = {
+                initials: initials,
+                score: score,
+            };
+            highScores.push(newScore);
+            localStorage.setItem("initialsValue", JSON.stringify(highScores))
+            console.log("Initials: " + initials)
+            window.location.replace("highscore.html")
+        });
+        hasRun = true;
+        }
     }
 }
