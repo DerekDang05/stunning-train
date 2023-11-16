@@ -112,35 +112,37 @@ const finished = finished2()
 let hasRun = false;
 function finished2() {
     return function() {
+        // issue with function repeating, uses if statement to run only once
         if (hasRun != true) {
             displayQuestions.innerHTML = "";
             countdownText.innerHTML = "";
             choiceLocation.innerHTML= "";
             bannerLocation.innerHTML = "";
             var h1 = document.createElement("h1")
+            var label = document.createElement("label")
+            var input = document.createElement("input")
+            var submitButton = document.createElement("button")
+
             h1.textContent = "You scored a  " + score + "/5"
             displayQuestions.appendChild(h1)
-        //creates input field and button to grab initials
-            var label = document.createElement("label")
-            label.textContent = "Enter initials"
-        
-            var scoresBtn = document.getElementById("scores-btn")
-    
-            var input = document.createElement("input")
+        //creates input field and button to grab initials)
+            label.textContent = "Enter initials: "
+            label.classList.add('highScoreLayout')
+            displayQuestions.appendChild(label)
+
             input.setAttribute("type", "text")
-            scoresBtn.appendChild(input)
-    
-            var submitButton = document.createElement("button")
+            input.classList.add('highScoreLayout')
+            displayQuestions.appendChild(input)
             submitButton.setAttribute("type", "button");
             submitButton.setAttribute("id", "Submit");
             submitButton.textContent = "Submit";
+            submitButton.classList.add('submitBtn');
+            submitButton.classList.add('highScoreLayout')
     
-            displayQuestions.appendChild(label)
-        // displayQuestions.appendChild(input)
             displayQuestions.appendChild(submitButton)
     
     
-        //event listener for submit button for initials
+        //event listener for submit button: sets local storage up
         submitButton.addEventListener("click", function () {
             var highScores = 
                 JSON.parse(localStorage.getItem("initialsValue")) || [];
@@ -151,7 +153,6 @@ function finished2() {
             };
             highScores.push(newScore);
             localStorage.setItem("initialsValue", JSON.stringify(highScores))
-            console.log("Initials: " + initials)
             window.location.replace("highscore.html")
         });
         hasRun = true;
